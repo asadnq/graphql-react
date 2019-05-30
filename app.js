@@ -10,18 +10,33 @@ const app = express();
 
 app.use(bodyParser.json());
 
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 app.use(auth);
 
-app.use('/graphql', graphqlHttp({
+app.use(
+  '/graphql',
+  graphqlHttp({
     schema: graphqlSchema,
     rootValue: graphqlResolver,
     graphiql: true
-}));    
+  })
+);
 
-mongoose.connect('mongodb+srv://asad:mmYgs0oqMYA0RCzV@cluster0-nr7jz.mongodb.net/react-graphql?retryWrites=true')
-            .then(() => {
-                app.listen(3000);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+mongoose
+  .connect('mongodb://localhost/bookings')
+  .then(() => {
+    app.listen(8000);
+  })
+  .catch(err => {
+    console.log(err);
+  });

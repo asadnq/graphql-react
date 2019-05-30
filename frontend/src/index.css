@@ -5,3 +5,46 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+    width: 100%;
+    display: block;
+}
+
+.form-control label {
+    margin-bottom: .5rem;
+}
+
+.form-control {
+    margin-bottom: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2vh 1vw;
+}
+
+.form-actions button,
+.btn {
+    background-color: #316BCF;
+    font: inherit;
+    border: 1px solid #316BCF;
+    border-radius: 5px;
+    padding: .5vw 1vw;
+    margin-right: 2vw;
+    cursor: pointer;
+    color: #fff
+}
+
+.form-actions button:hover,
+.form-actions button:active,
+.btn:hover,
+.btn:active {
+    background:#244F99;
+    border-color: #244F99;
+}    
